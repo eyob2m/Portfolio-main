@@ -1,4 +1,4 @@
-import Header from "./components/header";
+import Header from "./components/header.jsx";
 import img from "./assets/img.png";
 import ith from "./assets/ith.jpg";
 import mss from "./assets/mss.jpg";
