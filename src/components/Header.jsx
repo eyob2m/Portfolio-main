@@ -1,78 +1,162 @@
 import gsap from "gsap";
 import { useEffect, useState } from "react";
-import { IoMenuOutline } from "react-icons/io5";
 
+import { RiMenu3Fill } from "react-icons/ri";
+import cv from "../assets/NewCv.pdf";
 const Header = () => {
-  const [menuStatus, setmenuStatus] = useState(true);
+  const [menuStatus, setmenuStatus] = useState(false);
+  useEffect(() => {
+    gsap.fromTo(
+      ".icon",
+      {
+        opacity: 0,
+        scale: 1,
+        duration: 1,
+      },
+      {
+        opacity: 0.9,
 
-  useEffect(()=>{
-    if (menuStatus) {
-      gsap.to('.menu',{
-       opacity:1
-      }) }
-      else {
-        alert("ji")
-       gsap.to('.menu',{
-         opacity:0
-    
-
-        })
+        scale: 1.3,
+        duration: 1,
       }
-  },menuStatus)
-  //   gsap.to(".menu", {
-  //     opacity: 1,
-  //     x: 0,
-  //     duration: .7
-  //   });
-  //   gsap.to("li", {
-  //     x: 0,
-  //     delay: .5,
-  //     duration: .5,
-  //     stagger: .2,
-  //   });
-  // } else {
-  //   gsap.to(".menu", {
-  //     opacity: .7,
-      
-  //     duration: 1,
-  //     x: 500,
-  //   });
-  //   gsap.to("li", {
-  //     x: 20,
-  //     duration: .5,
-  //     stagger: .2,
-  //   });
-  
+    );
+  }, []);
+  useEffect(() => {
+    if (menuStatus) {
+      gsap.fromTo(
+        ".menu",
+        {
+          opacity: 0,
 
+          duration: 0.5,
+        },
+        {
+          opacity: 0.9,
+
+          duration: 0.5,
+        }
+      );
+
+      gsap.fromTo(
+        "ul a .m",
+        {
+          x: 400,
+
+          duration: 1,
+          stagger: 0.2,
+        },
+        {
+          x: 0,
+
+          duration: 1,
+          stagger: 0.2,
+        }
+      );
+    } else {
+      gsap.fromTo(
+        ".menu",
+        {
+          opacity: 0.7,
+
+          duration: 1,
+        },
+        {
+          opacity: 0,
+
+          duration: 1,
+        }
+      );
+
+      gsap.fromTo(
+        "ul a .m",
+        {
+          x: 0,
+
+          duration: 2,
+          stagger: 0.3,
+        },
+        {
+          x: 400,
+
+          duration: 2,
+          stagger: 0.3,
+        }
+      );
+    }
+  }, [menuStatus]);
   return (
-    <header className="flex w-[100%] md:px-20  relative  font-Poppins text-[3rem]   p-8 justify-between items-center">
-      <h1 className="  font-[700]">E</h1>
-      <nav className="md:hidden">
-        <IoMenuOutline
-          onClick={() => setmenuStatus(!menuStatus)}
-          className="text-black"
-        />
-        
-          <ul className="menu z-10 flex w-[100%] items-center   absolute text-nowrap flex-col text-[2.3rem]  bg-black top-[100%] text-white right-0 p-10 gap-[10px]">
-            <li>About Me</li>
-            <li>Skills</li>
-            <li>Project</li>
-            <li>Contact Me</li>
+    <>
+      <header className="shadow-sm md:hidden  z-50 relative py-6 px-10 text-4xl">
+        <div className="flex  justify-between">
+          <h1 className="icon font-serif">E</h1>
+          <RiMenu3Fill
+            className="md:hidden"
+            onClick={() => setmenuStatus(!menuStatus)}
+          />
+        </div>
+
+        <div
+          className={` flex justify-center menu bg-[rgba(0,0,0,1)] text-4xl py-10 text-white  w-[100%] absolute left-0 bottom-0 translate-y-[100%] z-10 `}
+        >
+          <ul className="flex justify-center flex-col gap-5">
+            <a href="#about">
+              {" "}
+              <li className="m">About Me</li>
+            </a>
+            <a href="#skills">
+              {" "}
+              <li className="m">Skills</li>
+            </a>
+            <a href="#experiances">
+              {" "}
+              <li className="m">Experiance</li>
+            </a>
+            <a href="#projects">
+              {" "}
+              <li className="m">Project</li>
+            </a>
+            <a href="#contact">
+              {" "}
+              <li className="m">Contact Me</li>
+            </a>
+            <a href={cv} target="_blank">
+            {" "}
+            <li>Resume</li>
+          </a>
           </ul>
-        
-      </nav>
-      <nav className="max-md:hidden">
-       
-        
-          <ul className="flex gap-10">
+        </div>
+      </header>
+      <header className="shadow-sm max-md:hidden flex justify-between text-black  z-50 w-[100vw]  py-6 px-10 text-4xl">
+        <h1 className="font-Poppins">E</h1>
+
+        <ul className="flex justify-center  gap-10">
+          <a href="#about">
+            {" "}
             <li>About Me</li>
+          </a>
+          <a href="#skills">
+            {" "}
             <li>Skills</li>
+          </a>
+          <a href="#experiances">
+            {" "}
+            <li>Experiance</li>
+          </a>
+          <a href="#projects">
+            {" "}
             <li>Project</li>
+          </a>
+          <a href="#contact">
+            {" "}
             <li>Contact Me</li>
-          </ul>
-        
-      </nav>
-    </header>
+          </a>
+          <a href={cv} target="_blank">
+            {" "}
+            <li>Resume</li>
+          </a>
+        </ul>
+      </header>
+    </>
   );
 };
 
