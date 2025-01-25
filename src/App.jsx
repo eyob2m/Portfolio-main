@@ -350,7 +350,7 @@ function App() {
                     {project.images.map((img) => {
                       return (
                         <div
-                          onClick={() => setfirst(img)}
+                          
                           className="p-2 max-md:w-[47%]  bg-gray-300"
                           key={img}
                         >
